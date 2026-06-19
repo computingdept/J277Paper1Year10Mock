@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>J277 Paper 1 Knowledge Prep</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    :root{
+        --green:#2f6f4e;
+        --light-green:#e8f3ed;
+        --dark:#1f2933;
+        --muted:#5b6773;
+        --border:#d8dee4;
+        --cream:#fffdf7;
+        --yellow:#fff4bf;
+        --red:#ffe6e6;
+        --blue:#eef5ff;
+    }
+    *{box-sizing:border-box}
+    body{
+        margin:0;
+        font-family: Arial, sans-serif;
+        background:#f5f7f8;
+        color:var(--dark);
+        line-height:1.5;
+    }
+    header{
+        background:white;
+        border-bottom:1px solid var(--border);
+        position:sticky;
+        top:0;
+        z-index:10;
+        padding:12px 18px;
+    }
+    .topbar{
+        max-width:1200px;
+        margin:auto;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        flex-wrap:wrap;
+    }
+    h1{
+        margin:0;
+        font-size:1.35rem;
+    }
+    .subtitle{
+        color:var(--muted);
+        font-size:.95rem;
+        margin-top:2px;
+    }
+    .overall-paper-score{
+        margin-left:auto;
+        background:var(--green);
+        color:white;
+        border-radius:18px;
+        padding:12px 18px;
+        min-width:170px;
+        text-align:center;
+        box-shadow:0 4px 14px rgba(0,0,0,.12);
+    }
+    .overall-paper-score .label{
+        display:block;
+        font-size:.8rem;
+        font-weight:bold;
+        letter-spacing:.04em;
+        text-transform:uppercase;
+        opacity:.9;
+    }
+    .overall-paper-score .percent{
+        display:block;
+        font-size:2rem;
+        line-height:1;
+        font-weight:900;
+        margin-top:4px;
+    }
+    .overall-paper-score .detail{
+        display:block;
+        font-size:.8rem;
+        margin-top:4px;
+        opacity:.9;
+    }
+    nav{
+        display:flex;
+        gap:8px;
+        flex-wrap:wrap;
+    }
+    nav button, .action-btn{
+        border:1px solid var(--green);
+        background:white;
+        color:var(--green);
+        padding:9px 12px;
+        border-radius:999px;
+        font-weight:bold;
+        cursor:pointer;
+    }
+    nav button.active, .action-btn.primary{
+        background:var(--green);
+        color:white;
+    }
+    main{
+        max-width:1200px;
+        margin:18px auto 60px;
+        padding:0 18px;
+    }
+    .page{
+        display:none;
+    }
+    .page.active{
+        display:block;
+    }
+    .hero{
+        background:white;
+        border:1px solid var(--border);
+        border-radius:18px;
+        padding:20px;
+        margin-bottom:18px;
+    }
+    .hero h2{
+        margin:0 0 8px;
+        font-size:1.6rem;
+    }
+    .lesson-grid{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:18px;
+        align-items:start;
+    }
+    .question-grid{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:18px;
+        align-items:start;
+    }
+    @media (max-width:900px){
+        .question-grid{grid-template-columns:1fr}
+    }
+    .card{
+        background:white;
+        border:1px solid var(--border);
+        border-radius:18px;
+        padding:18px;
+        margin-bottom:18px;
+    }
+    .card h3{
+        margin-top:0;
+        font-size:1.25rem;
+        border-bottom:2px solid var(--light-green);
+        padding-bottom:8px;
+    }
+    .knowledge-list{
+        display:grid;
+        gap:9px;
+        margin:0;
+        padding-left:20px;
+    }
+    .mcq{
+        border:1px solid var(--border);
+        border-radius:14px;
+        padding:14px;
+        margin-bottom:14px;
+        background:var(--cream);
+    }
+    .mcq p{
+        margin:0 0 10px;
+        font-weight:bold;
+    }
+    .options{
+        display:grid;
+        gap:8px;
+    }
+    .option{
+        border:1px solid var(--border);
+        background:white;
+        padding:10px;
+        border-radius:10px;
+        cursor:pointer;
+        text-align:left;
+        font-size:1rem;
+    }
+    .option:hover{
+        border-color:var(--green);
+    }
+    .option.correct{
+        background:#e7f7ea;
+        border-color:#2e7d32;
+    }
+    .option.wrong{
+        background:#fdeaea;
+        border-color:#c62828;
+    }
+    .feedback{
+        min-height:22px;
+        font-weight:bold;
+        margin-top:9px;
+    }
+    .feedback.ok{color:#1b6e32}
+    .feedback.no{color:#a11d1d}
+    .drag-area{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:16px;
+    }
+    @media (max-width:760px){
+        .drag-area{grid-template-columns:1fr}
+    }
+    .draggables, .dropzones{
+        display:grid;
+        gap:10px;
+    }
+    .drag-item{
+        background:var(--blue);
+        border:1px solid #b6c9e6;
+        border-radius:12px;
+        padding:10px;
+        cursor:grab;
+        font-weight:bold;
+    }
+    .drag-item:active{cursor:grabbing}
+    .dropzone{
+        min-height:58px;
+        border:2px dashed #b6bec8;
+        background:#fbfcfd;
+        border-radius:14px;
+        padding:10px;
+    }
+    .dropzone strong{
+        display:block;
+        margin-bottom:6px;
+        color:var(--green);
+    }
+    .dropzone.over{
+        background:var(--light-green);
+        border-color:var(--green);
+    }
+    .dropzone.correct{
+        border-style:solid;
+        border-color:#2e7d32;
+        background:#edf8ef;
+    }
+    .dropzone.wrong{
+        border-style:solid;
+        border-color:#c62828;
+        background:#fff1f1;
+    }
+    .bank-title{
+        font-weight:bold;
+        margin-bottom:6px;
+        color:var(--muted);
+    }
+    .score-panel{
+        background:var(--yellow);
+        border:1px solid #e6d27b;
+        border-radius:16px;
+        padding:14px;
+        margin:18px 0;
+        font-weight:bold;
+    }
+    .page-score{
+        background:var(--light-green);
+        border:1px solid #b9d7c7;
+        color:var(--dark);
+        border-radius:14px;
+        padding:12px 14px;
+        margin-top:14px;
+        font-weight:bold;
+    }
+    .page-score small{
+        display:block;
+        font-weight:normal;
+        color:var(--muted);
+        margin-top:3px;
+    }
+    .small-note{
+        color:var(--muted);
+        font-size:.95rem;
+    }
+    .button-row{
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+        margin-top:12px;
+    }
+    .mini-check{
+        background:#f8fafc;
+        border-left:5px solid var(--green);
+        padding:12px;
+        border-radius:10px;
+        margin-top:12px;
+    }
+    .missing-task{
+        background:white;
+        border:1px solid var(--border);
+        border-radius:14px;
+        padding:14px;
+        margin-bottom:14px;
+    }
+    .sentence{
+        font-size:1.05rem;
+        margin:0 0 12px;
+    }
+    .blank{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        min-width:130px;
+        min-height:34px;
+        border:2px dashed #b6bec8;
+        border-radius:10px;
+        background:#fbfcfd;
+        vertical-align:middle;
+        padding:4px 8px;
+    }
+    .blank.over{
+        background:var(--light-green);
+        border-color:var(--green);
+    }
+    .blank.correct{
+        border-style:solid;
+        border-color:#2e7d32;
+        background:#edf8ef;
+    }
+    .blank.wrong{
+        border-style:solid;
+        border-color:#c62828;
+        background:#fff1f1;
+    }
+    .word-bank{
+        display:flex;
+        flex-wrap:wrap;
+        gap:8px;
+        margin-top:8px;
+    }
+    .word-chip{
+        background:var(--blue);
+        border:1px solid #b6c9e6;
+        border-radius:999px;
+        padding:8px 12px;
+        cursor:grab;
+        font-weight:bold;
+    }
+    .word-chip:active{cursor:grabbing}
+    .typed-question{
+        background:var(--cream);
+        border:1px solid var(--border);
+        border-radius:14px;
+        padding:14px;
+        margin-bottom:12px;
+    }
+    .typed-question label{
+        display:block;
+        font-weight:bold;
+        margin-bottom:8px;
+    }
+    .typed-question input{
+        width:100%;
+        max-width:340px;
+        padding:10px;
+        border:1px solid var(--border);
+        border-radius:10px;
+        font-size:1rem;
+    }
+    .typed-question.correct{
+        background:#edf8ef;
+        border-color:#2e7d32;
+    }
+    .paragraph-task{
+        background:#fffdf7;
+        border:1px solid var(--border);
+        border-radius:14px;
+        padding:16px;
+        margin-bottom:14px;
+        font-size:1.05rem;
+    }
+    .paragraph-task p{
+        margin-top:0;
+    }
+    .typed-question.wrong{
+        background:#fff1f1;
+        border-color:#c62828;
+    }
+    .typed-feedback{
+        margin-top:8px;
+        font-weight:bold;
+        min-height:22px;
+    }
+    .hidden{display:none}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="topbar">
+        <div>
+            <h1>J277 Paper 1 Knowledge Prep</h1>
+            <div class="subtitle">MCQ + drag-and-drop revision for OCR GCSE Computer Science</div>
+        </div>
+        <div class="overall-paper-score" id="overallPaperScore">
+            <span class="label">Overall Paper</span>
+            <span class="percent">0%</span>
+            <span class="detail">0 / 0</span>
+        </div>
+        <nav>
+            <button class="tab active" data-page="p11">J277 1.1 Systems architecture</button>
+            <button class="tab" data-page="p12">J277 1.2 Memory and storage</button>
+            <button class="tab" data-page="p13">J277 1.3 Networks and protocols</button>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<section id="p11" class="page active" data-topic="1.1 Systems architecture">
+    <div class="hero">
+        <h2>J277 1.1 Systems architecture</h2>
+        <p>Focus: CPU, registers, fetch-decode-execute cycle, and performance factors.</p>
+        <div class="page-score" data-score-for="p11">Page score: 0 / 0 = 0%<small>Complete MCQs and press check on drag tasks to update this.</small></div>
+    </div>
+
+    <div class="lesson-grid">
+        <div class="card">
+            <h3>Key knowledge</h3>
+            <ul class="knowledge-list">
+                <li>The CPU processes instructions and data.</li>
+                <li>The Control Unit coordinates the fetch-decode-execute cycle.</li>
+                <li>The ALU performs arithmetic and logical operations.</li>
+                <li>The Program Counter stores the address of the next instruction.</li>
+                <li>The MAR stores the memory address being accessed.</li>
+                <li>The MDR stores data moving to or from memory.</li>
+                <li>The Accumulator stores intermediate results.</li>
+                <li>CPU performance can be affected by clock speed, cache size and number of cores.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="question-grid">
+        <div class="card">
+            <h3>MCQ practice</h3>
+            <div class="mcq" data-answer="b">
+                <p>1. Which part of the CPU carries out arithmetic and logic operations?</p>
+                <div class="options">
+                    <button class="option" data-choice="a">Control Unit</button>
+                    <button class="option" data-choice="b">ALU</button>
+                    <button class="option" data-choice="c">Program Counter</button>
+                    <button class="option" data-choice="d">MAR</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="mcq" data-answer="c">
+                <p>2. Which register stores the address of the next instruction?</p>
+                <div class="options">
+                    <button class="option" data-choice="a">MDR</button>
+                    <button class="option" data-choice="b">Accumulator</button>
+                    <button class="option" data-choice="c">Program Counter</button>
+                    <button class="option" data-choice="d">ALU</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="mcq" data-answer="a">
+                <p>3. Which factor means the CPU can carry out more cycles per second?</p>
+                <div class="options">
+                    <button class="option" data-choice="a">Higher clock speed</button>
+                    <button class="option" data-choice="b">Lower resolution</button>
+                    <button class="option" data-choice="c">Smaller secondary storage</button>
+                    <button class="option" data-choice="d">Larger monitor</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Missing word drag tasks</h3>
+            <div class="missing-task">
+                <p class="sentence">1. The <span class="blank" data-target="controlunit"></span> coordinates the activities of the CPU.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="controlunit">Control Unit</span>
+                    <span class="word-chip" draggable="true" data-match="cache">Cache</span>
+                    <span class="word-chip" draggable="true" data-match="rom">ROM</span>
+                </div>
+            </div>
+            <div class="missing-task">
+                <p class="sentence">2. The <span class="blank" data-target="programcounter"></span> stores the address of the next instruction to be fetched.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="alu">ALU</span>
+                    <span class="word-chip" draggable="true" data-match="programcounter">Program Counter</span>
+                    <span class="word-chip" draggable="true" data-match="mdr">MDR</span>
+                </div>
+            </div>
+            <div class="missing-task">
+                <p class="sentence">3. A larger <span class="blank" data-target="cache"></span> can improve CPU performance because frequently used data is accessed quickly.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="secondary">secondary storage</span>
+                    <span class="word-chip" draggable="true" data-match="cache">cache</span>
+                    <span class="word-chip" draggable="true" data-match="protocol">protocol</span>
+                </div>
+            </div>
+            <div class="missing-task">
+                <p class="sentence">4. The <span class="blank" data-target="mar"></span> stores the address in memory that the CPU wants to access.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="mar">MAR</span>
+                    <span class="word-chip" draggable="true" data-match="mdr">MDR</span>
+                    <span class="word-chip" draggable="true" data-match="acc">Accumulator</span>
+                </div>
+            </div>
+            <div class="missing-task">
+                <p class="sentence">5. The <span class="blank" data-target="accumulator"></span> stores intermediate results from calculations.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="bus">bus</span>
+                    <span class="word-chip" draggable="true" data-match="register">register</span>
+                    <span class="word-chip" draggable="true" data-match="accumulator">Accumulator</span>
+                </div>
+            </div>
+            <div class="button-row">
+                <button class="action-btn primary check-missing">Check missing words</button>
+                <button class="action-btn reset-missing">Reset missing words</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>1.1 Systems architecture: paragraph missing words</h3>
+        <p class="small-note">Drag the missing words into the paragraphs. This summarises the key OCR J277 1.1 knowledge.</p>
+
+        <div class="paragraph-task">
+            <p>
+                The purpose of the CPU is to process instructions and data. It does this using the 
+                <span class="blank" data-target="fetch"></span>-decode-execute cycle. In this cycle, the CPU gets an instruction from memory, 
+                works out what the instruction means, and then carries it out. The 
+                <span class="blank" data-target="cu"></span> coordinates the cycle, while the 
+                <span class="blank" data-target="alu"></span> performs arithmetic and logical operations. 
+                <span class="blank" data-target="cache"></span> is fast memory close to the CPU that stores frequently used data and instructions.
+            </p>
+            <div class="word-bank">
+                <span class="word-chip" draggable="true" data-match="cache">cache</span>
+                <span class="word-chip" draggable="true" data-match="optical">optical</span>
+                <span class="word-chip" draggable="true" data-match="fetch">fetch</span>
+                <span class="word-chip" draggable="true" data-match="alu">ALU</span>
+                <span class="word-chip" draggable="true" data-match="cu">Control Unit</span>
+                <span class="word-chip" draggable="true" data-match="protocol">protocol</span>
+            </div>
+        </div>
+
+        <div class="paragraph-task">
+            <p>
+                Von Neumann architecture uses memory to store both instructions and data. The 
+                <span class="blank" data-target="mar"></span> stores a memory address, while the 
+                <span class="blank" data-target="mdr"></span> stores data being transferred to or from memory. 
+                The <span class="blank" data-target="pc"></span> stores the address of the next instruction to be fetched. 
+                The <span class="blank" data-target="acc"></span> stores intermediate results from calculations. 
+                An address tells the CPU where something is stored, while data is the actual value being used.
+            </p>
+            <div class="word-bank">
+                <span class="word-chip" draggable="true" data-match="acc">Accumulator</span>
+                <span class="word-chip" draggable="true" data-match="ram">RAM</span>
+                <span class="word-chip" draggable="true" data-match="mar">MAR</span>
+                <span class="word-chip" draggable="true" data-match="pc">Program Counter</span>
+                <span class="word-chip" draggable="true" data-match="ssd">SSD</span>
+                <span class="word-chip" draggable="true" data-match="mdr">MDR</span>
+            </div>
+        </div>
+
+        <div class="paragraph-task">
+            <p>
+                CPU performance can be affected by clock speed, cache size and the number of cores. A higher 
+                <span class="blank" data-target="clockspeed"></span> means the CPU can complete more cycles per second. 
+                A larger <span class="blank" data-target="cachesize"></span> can reduce the need to fetch data from slower memory. 
+                More <span class="blank" data-target="cores"></span> can allow a CPU to process more instructions at the same time, 
+                but only if the software can use them effectively.
+            </p>
+            <div class="word-bank">
+                <span class="word-chip" draggable="true" data-match="cores">cores</span>
+                <span class="word-chip" draggable="true" data-match="resolution">resolution</span>
+                <span class="word-chip" draggable="true" data-match="clockspeed">clock speed</span>
+                <span class="word-chip" draggable="true" data-match="cachesize">cache size</span>
+                <span class="word-chip" draggable="true" data-match="dns">DNS</span>
+            </div>
+        </div>
+
+        <div class="paragraph-task">
+            <p>
+                An embedded system is a computer system built into another device to perform a 
+                <span class="blank" data-target="specific"></span> task. Embedded systems are often small, reliable and designed to run with little user input. 
+                Examples include a washing machine controller, a car braking system, a microwave and a 
+                <span class="blank" data-target="trafficlight"></span> system.
+            </p>
+            <div class="word-bank">
+                <span class="word-chip" draggable="true" data-match="trafficlight">traffic light</span>
+                <span class="word-chip" draggable="true" data-match="specific">specific</span>
+                <span class="word-chip" draggable="true" data-match="general">general-purpose</span>
+                <span class="word-chip" draggable="true" data-match="bitmap">bitmap</span>
+            </div>
+        </div>
+
+        <div class="button-row">
+            <button class="action-btn primary check-missing">Check 1.1 paragraphs</button>
+            <button class="action-btn reset-missing">Reset 1.1 paragraphs</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Drag and drop: match the CPU part to its role</h3>
+        <div class="drag-area">
+            <div>
+                <div class="bank-title">Drag these:</div>
+                <div class="draggables">
+                    <div class="drag-item" draggable="true" data-match="alu">ALU</div>
+                    <div class="drag-item" draggable="true" data-match="cu">Control Unit</div>
+                    <div class="drag-item" draggable="true" data-match="pc">Program Counter</div>
+                    <div class="drag-item" draggable="true" data-match="mar">MAR</div>
+                    <div class="drag-item" draggable="true" data-match="mdr">MDR</div>
+                    <div class="drag-item" draggable="true" data-match="acc">Accumulator</div>
+                </div>
+            </div>
+            <div>
+                <div class="bank-title">Drop onto the correct role:</div>
+                <div class="dropzones">
+                    <div class="dropzone" data-target="pc"><strong>Stores address of next instruction</strong></div>
+                    <div class="dropzone" data-target="alu"><strong>Performs calculations and logic</strong></div>
+                    <div class="dropzone" data-target="mar"><strong>Stores memory address being accessed</strong></div>
+                    <div class="dropzone" data-target="cu"><strong>Coordinates CPU operations</strong></div>
+                    <div class="dropzone" data-target="mdr"><strong>Stores data moving to or from memory</strong></div>
+                    <div class="dropzone" data-target="acc"><strong>Stores intermediate results</strong></div>
+                </div>
+            </div>
+        </div>
+        <div class="button-row">
+            <button class="action-btn primary check-drag">Check drag answers</button>
+            <button class="action-btn reset-drag">Reset drag task</button>
+        </div>
+    </div>
+</section>
+
+<section id="p12" class="page" data-topic="1.2 Memory and storage">
+    <div class="hero">
+        <h2>J277 1.2 Memory and storage</h2>
+        <p>Focus: RAM, ROM, cache, virtual memory, secondary storage, images, sound and file-size calculations.</p>
+        <div class="page-score" data-score-for="p12">Page score: 0 / 0 = 0%<small>Complete MCQs and press check on drag tasks to update this.</small></div>
+    </div>
+
+    <div class="lesson-grid">
+        <div class="card">
+            <h3>Key knowledge</h3>
+            <ul class="knowledge-list">
+                <li>RAM is volatile and stores programs/data currently in use.</li>
+                <li>ROM is non-volatile and stores boot instructions.</li>
+                <li>Cache is very fast memory close to the CPU.</li>
+                <li>Virtual memory uses secondary storage when RAM is full.</li>
+                <li>Secondary storage can be magnetic, optical or solid-state.</li>
+                <li>Bitmap file size = width × height × colour depth.</li>
+                <li>Sound quality is affected by sample rate and bit depth.</li>
+                <li>More detail usually means a larger file size.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="question-grid">
+        <div class="card">
+            <h3>MCQ practice</h3>
+            <div class="mcq" data-answer="d">
+                <p>1. Which memory is volatile?</p>
+                <div class="options">
+                    <button class="option" data-choice="a">ROM</button>
+                    <button class="option" data-choice="b">SSD</button>
+                    <button class="option" data-choice="c">Optical disc</button>
+                    <button class="option" data-choice="d">RAM</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="mcq" data-answer="b">
+                <p>2. Which formula calculates the size of a bitmap image in bits?</p>
+                <div class="options">
+                    <button class="option" data-choice="a">sample rate × duration × bit depth</button>
+                    <button class="option" data-choice="b">width × height × colour depth</button>
+                    <button class="option" data-choice="c">clock speed × cores × cache</button>
+                    <button class="option" data-choice="d">IP address × DNS × URL</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="mcq" data-answer="a">
+                <p>3. What happens when sample rate increases?</p>
+                <div class="options">
+                    <button class="option" data-choice="a">More samples are taken each second</button>
+                    <button class="option" data-choice="b">The file always becomes smaller</button>
+                    <button class="option" data-choice="c">The image has more pixels</button>
+                    <button class="option" data-choice="d">The CPU has more cores</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Missing word drag tasks</h3>
+            <div class="missing-task">
+                <p class="sentence">1. <span class="blank" data-target="ram"></span> is volatile memory used to store programs and data currently in use.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="rom">ROM</span>
+                    <span class="word-chip" draggable="true" data-match="ram">RAM</span>
+                    <span class="word-chip" draggable="true" data-match="hdd">HDD</span>
+                </div>
+            </div>
+            <div class="missing-task">
+                <p class="sentence">2. <span class="blank" data-target="bitdepth"></span> is the number of bits used to store each sound sample.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="bitdepth">Bit depth</span>
+                    <span class="word-chip" draggable="true" data-match="resolution">Resolution</span>
+                    <span class="word-chip" draggable="true" data-match="clock">Clock speed</span>
+                </div>
+            </div>
+            <div class="missing-task">
+                <p class="sentence">3. A bitmap image file size is calculated using width × height × <span class="blank" data-target="colourdepth"></span>.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="sample">sample rate</span>
+                    <span class="word-chip" draggable="true" data-match="colourdepth">colour depth</span>
+                    <span class="word-chip" draggable="true" data-match="cores">number of cores</span>
+                </div>
+            </div>
+            <div class="missing-task">
+                <p class="sentence">4. <span class="blank" data-target="rom"></span> is non-volatile memory that stores start-up instructions.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="cache">Cache</span>
+                    <span class="word-chip" draggable="true" data-match="rom">ROM</span>
+                    <span class="word-chip" draggable="true" data-match="ram">RAM</span>
+                </div>
+            </div>
+            <div class="missing-task">
+                <p class="sentence">5. <span class="blank" data-target="virtualmemory"></span> uses secondary storage as temporary memory when RAM is full.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="virtualmemory">Virtual memory</span>
+                    <span class="word-chip" draggable="true" data-match="solidstate">Solid-state storage</span>
+                    <span class="word-chip" draggable="true" data-match="metadata">Metadata</span>
+                </div>
+            </div>
+            <div class="button-row">
+                <button class="action-btn primary check-missing">Check missing words</button>
+                <button class="action-btn reset-missing">Reset missing words</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>1.2.2 Secondary storage: paragraph missing words</h3>
+        <p class="small-note">Drag the missing words into the paragraphs. This summarises the key OCR J277 1.2.2 knowledge.</p>
+
+        <div class="paragraph-task">
+            <p>
+                Secondary storage is needed because main memory such as RAM is 
+                <span class="blank" data-target="volatile"></span>. This means data would be lost when the power is turned off. 
+                Secondary storage is usually <span class="blank" data-target="nonvolatile"></span>, so it can store the operating system, 
+                applications and user files long term. The three common types are 
+                <span class="blank" data-target="optical"></span>, 
+                <span class="blank" data-target="magnetic"></span> and 
+                <span class="blank" data-target="solidstate"></span>.
+            </p>
+            <div class="word-bank">
+                <span class="word-chip" draggable="true" data-match="magnetic">magnetic</span>
+                <span class="word-chip" draggable="true" data-match="protocol">protocol</span>
+                <span class="word-chip" draggable="true" data-match="volatile">volatile</span>
+                <span class="word-chip" draggable="true" data-match="solidstate">solid-state</span>
+                <span class="word-chip" draggable="true" data-match="register">register</span>
+                <span class="word-chip" draggable="true" data-match="nonvolatile">non-volatile</span>
+                <span class="word-chip" draggable="true" data-match="optical">optical</span>
+            </div>
+        </div>
+
+        <div class="paragraph-task">
+            <p>
+                A suitable storage device depends on the application. For example, an SSD is often chosen when 
+                <span class="blank" data-target="speed"></span> and durability are important because it has no moving parts. 
+                A hard disk drive may be chosen when large <span class="blank" data-target="capacity"></span> is needed at a lower cost. 
+                A USB flash drive is useful when <span class="blank" data-target="portability"></span> matters. 
+                When comparing storage, you should discuss capacity, speed, portability, durability, 
+                <span class="blank" data-target="reliability"></span> and cost.
+            </p>
+            <div class="word-bank">
+                <span class="word-chip" draggable="true" data-match="sample">sample rate</span>
+                <span class="word-chip" draggable="true" data-match="capacity">capacity</span>
+                <span class="word-chip" draggable="true" data-match="speed">speed</span>
+                <span class="word-chip" draggable="true" data-match="cores">cores</span>
+                <span class="word-chip" draggable="true" data-match="reliability">reliability</span>
+                <span class="word-chip" draggable="true" data-match="portability">portability</span>
+            </div>
+        </div>
+
+        <div class="button-row">
+            <button class="action-btn primary check-missing">Check secondary storage paragraphs</button>
+            <button class="action-btn reset-missing">Reset secondary storage paragraphs</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Drag and drop: sort the examples</h3>
+        <div class="drag-area">
+            <div>
+                <div class="bank-title">Drag these:</div>
+                <div class="draggables">
+                    <div class="drag-item" draggable="true" data-match="secondary">SSD</div>
+                    <div class="drag-item" draggable="true" data-match="primary">ROM</div>
+                    <div class="drag-item" draggable="true" data-match="secondary">Blu-ray disc</div>
+                    <div class="drag-item" draggable="true" data-match="primary">Cache</div>
+                    <div class="drag-item" draggable="true" data-match="secondary">Hard disk drive</div>
+                    <div class="drag-item" draggable="true" data-match="primary">RAM</div>
+                </div>
+            </div>
+            <div>
+                <div class="bank-title">Drop into the correct category:</div>
+                <div class="dropzones">
+                    <div class="dropzone" data-target="primary"><strong>Primary memory</strong></div>
+                    <div class="dropzone" data-target="secondary"><strong>Secondary storage</strong></div>
+                </div>
+            </div>
+        </div>
+        <div class="button-row">
+            <button class="action-btn primary check-drag">Check drag answers</button>
+            <button class="action-btn reset-drag">Reset drag task</button>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>Type-in answers: file size, hexadecimal and bit shifting</h3>
+        <p class="small-note">Type the answer, then press check. Use OCR-style units where shown. For hexadecimal, do not write 0x.</p>
+
+        <div class="typed-question" data-answer="80000">
+            <label>1. A bitmap image is 200 pixels wide and 100 pixels high with a colour depth of 4 bits. What is the file size in bits?</label>
+            <input type="text" placeholder="Type answer">
+            <div class="typed-feedback"></div>
+        </div>
+
+        <div class="typed-question" data-answer="10000">
+            <label>2. Convert 80,000 bits into bytes.</label>
+            <input type="text" placeholder="Type answer">
+            <div class="typed-feedback"></div>
+        </div>
+
+        <div class="typed-question" data-answer="300000">
+            <label>3. A bitmap image is 500 pixels wide and 300 pixels high with a colour depth of 2 bits. What is the file size in bits?</label>
+            <input type="text" placeholder="Type answer">
+            <div class="typed-feedback"></div>
+        </div>
+
+        <div class="typed-question" data-answer="37500">
+            <label>4. Convert 300,000 bits into bytes.</label>
+            <input type="text" placeholder="Type answer">
+            <div class="typed-feedback"></div>
+        </div>
+
+        <div class="typed-question" data-answer="2D">
+            <label>5. Convert denary 45 into hexadecimal.</label>
+            <input type="text" placeholder="Type answer">
+            <div class="typed-feedback"></div>
+        </div>
+
+        <div class="typed-question" data-answer="160">
+            <label>6. Convert hexadecimal A0 into denary.</label>
+            <input type="text" placeholder="Type answer">
+            <div class="typed-feedback"></div>
+        </div>
+
+        <div class="typed-question" data-answer="6C">
+            <label>7. Convert binary 01101100 into hexadecimal.</label>
+            <input type="text" placeholder="Type answer">
+            <div class="typed-feedback"></div>
+        </div>
+
+        <div class="typed-question" data-answer="11110000">
+            <label>8. Convert hexadecimal F0 into 8-bit binary.</label>
+            <input type="text" placeholder="Type answer">
+            <div class="typed-feedback"></div>
+        </div>
+
+        <div class="typed-question" data-answer="12">
+            <label>9. Binary 00000110 is shifted left by 1 place. What is the new denary value?</label>
+            <input type="text" placeholder="Type answer">
+            <div class="typed-feedback"></div>
+        </div>
+
+        <div class="typed-question" data-answer="14">
+            <label>10. Binary 00011100 is shifted right by 1 place. What is the new denary value?</label>
+            <input type="text" placeholder="Type answer">
+            <div class="typed-feedback"></div>
+        </div>
+
+        <div class="button-row">
+            <button class="action-btn primary check-typed">Check type-in answers</button>
+            <button class="action-btn reset-typed">Reset type-in answers</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Mini calculation check</h3>
+        <p>A bitmap image is <strong>200 pixels wide</strong>, <strong>100 pixels high</strong> and has a colour depth of <strong>4 bits</strong>.</p>
+        <button class="action-btn primary" onclick="toggleCalc('calc12')">Show / hide answer</button>
+        <div id="calc12" class="mini-check hidden">
+            200 × 100 × 4 = 80,000 bits.  
+            80,000 ÷ 8 = 10,000 bytes.
+        </div>
+    </div>
+</section>
+
+<section id="p13" class="page" data-topic="1.3 Computer networks, connections and protocols">
+    <div class="hero">
+        <h2>J277 1.3 Computer networks, connections and protocols</h2>
+        <p>Focus: networks, client-server, DNS, IP addresses, protocols and layers.</p>
+        <div class="page-score" data-score-for="p13">Page score: 0 / 0 = 0%<small>Complete MCQs and press check on drag tasks to update this.</small></div>
+    </div>
+
+    <div class="lesson-grid">
+        <div class="card">
+            <h3>Key knowledge</h3>
+            <ul class="knowledge-list">
+                <li>A network is two or more devices connected together.</li>
+                <li>Clients request services; servers provide services.</li>
+                <li>DNS translates domain names into IP addresses.</li>
+                <li>IPv4 addresses have four numbers separated by full stops.</li>
+                <li>Protocols are rules for communication.</li>
+                <li>HTTP loads webpages; HTTPS loads secure webpages.</li>
+                <li>FTP transfers files; IMAP retrieves emails from a mail server.</li>
+                <li>Layers help split complex network communication into manageable parts.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="question-grid">
+        <div class="card">
+            <h3>MCQ practice</h3>
+            <div class="mcq" data-answer="b">
+                <p>1. What does DNS do?</p>
+                <div class="options">
+                    <button class="option" data-choice="a">Encrypts all files</button>
+                    <button class="option" data-choice="b">Translates domain names into IP addresses</button>
+                    <button class="option" data-choice="c">Stores images in binary</button>
+                    <button class="option" data-choice="d">Controls the CPU</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="mcq" data-answer="d">
+                <p>2. Which protocol is used for secure webpages?</p>
+                <div class="options">
+                    <button class="option" data-choice="a">FTP</button>
+                    <button class="option" data-choice="b">IMAP</button>
+                    <button class="option" data-choice="c">HTTP</button>
+                    <button class="option" data-choice="d">HTTPS</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="mcq" data-answer="a">
+                <p>3. In client-server networking, what does a server do?</p>
+                <div class="options">
+                    <button class="option" data-choice="a">Provides services or resources</button>
+                    <button class="option" data-choice="b">Only displays the keyboard</button>
+                    <button class="option" data-choice="c">Only stores sound samples</button>
+                    <button class="option" data-choice="d">Always acts as a printer</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Missing word drag tasks</h3>
+            <div class="missing-task">
+                <p class="sentence">1. <span class="blank" data-target="dns"></span> translates a domain name into an IP address.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="ftp">FTP</span>
+                    <span class="word-chip" draggable="true" data-match="dns">DNS</span>
+                    <span class="word-chip" draggable="true" data-match="imap">IMAP</span>
+                </div>
+            </div>
+            <div class="missing-task">
+                <p class="sentence">2. <span class="blank" data-target="https"></span> is the secure protocol used for webpages.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="http">HTTP</span>
+                    <span class="word-chip" draggable="true" data-match="https">HTTPS</span>
+                    <span class="word-chip" draggable="true" data-match="url">URL</span>
+                </div>
+            </div>
+            <div class="missing-task">
+                <p class="sentence">3. In a client-server network, a <span class="blank" data-target="client"></span> requests services from a server.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="client">client</span>
+                    <span class="word-chip" draggable="true" data-match="layer">layer</span>
+                    <span class="word-chip" draggable="true" data-match="packet">packet</span>
+                </div>
+            </div>
+            <div class="missing-task">
+                <p class="sentence">4. <span class="blank" data-target="ftp"></span> is used to transfer files between computers.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="imap">IMAP</span>
+                    <span class="word-chip" draggable="true" data-match="ftp">FTP</span>
+                    <span class="word-chip" draggable="true" data-match="http">HTTP</span>
+                </div>
+            </div>
+            <div class="missing-task">
+                <p class="sentence">5. Network <span class="blank" data-target="layers"></span> split communication into smaller, manageable sections.</p>
+                <div class="word-bank">
+                    <span class="word-chip" draggable="true" data-match="pixels">pixels</span>
+                    <span class="word-chip" draggable="true" data-match="layers">layers</span>
+                    <span class="word-chip" draggable="true" data-match="registers">registers</span>
+                </div>
+            </div>
+            <div class="button-row">
+                <button class="action-btn primary check-missing">Check missing words</button>
+                <button class="action-btn reset-missing">Reset missing words</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>1.3 Networks and protocols: paragraph missing words</h3>
+        <p class="small-note">Drag the missing words into the paragraphs. This summarises the key OCR J277 1.3 knowledge.</p>
+
+        <div class="paragraph-task">
+            <p>
+                A <span class="blank" data-target="lan"></span> covers a small geographical area, such as a school or office. 
+                A <span class="blank" data-target="wan"></span> covers a larger geographical area and may connect many LANs together. 
+                Network performance can be affected by the number of connected 
+                <span class="blank" data-target="devices"></span> and the available 
+                <span class="blank" data-target="bandwidth"></span>. More devices sharing the same connection can slow the network down.
+            </p>
+            <div class="word-bank">
+                <span class="word-chip" draggable="true" data-match="bandwidth">bandwidth</span>
+                <span class="word-chip" draggable="true" data-match="wan">WAN</span>
+                <span class="word-chip" draggable="true" data-match="cache">cache</span>
+                <span class="word-chip" draggable="true" data-match="lan">LAN</span>
+                <span class="word-chip" draggable="true" data-match="devices">devices</span>
+                <span class="word-chip" draggable="true" data-match="rom">ROM</span>
+            </div>
+        </div>
+
+        <div class="paragraph-task">
+            <p>
+                In a client-server network, a <span class="blank" data-target="server"></span> provides services and resources, 
+                while a <span class="blank" data-target="client"></span> requests and uses those services. 
+                In a peer-to-peer network, devices can share resources directly without one central server. 
+                Hardware used to build a LAN can include a switch, router, wireless access point, 
+                <span class="blank" data-target="nic"></span> and transmission media.
+            </p>
+            <div class="word-bank">
+                <span class="word-chip" draggable="true" data-match="client">client</span>
+                <span class="word-chip" draggable="true" data-match="nic">NIC</span>
+                <span class="word-chip" draggable="true" data-match="alu">ALU</span>
+                <span class="word-chip" draggable="true" data-match="server">server</span>
+                <span class="word-chip" draggable="true" data-match="bitmap">bitmap</span>
+            </div>
+        </div>
+
+        <div class="paragraph-task">
+            <p>
+                The Internet is a worldwide collection of computer networks. A web server provides 
+                <span class="blank" data-target="webpages"></span> to clients. A file server provides file storage and retrieval. 
+                DNS converts a <span class="blank" data-target="url"></span> into an IP address. 
+                The Cloud means remote service provision, such as online storage, software or processing.
+            </p>
+            <div class="word-bank">
+                <span class="word-chip" draggable="true" data-match="url">URL</span>
+                <span class="word-chip" draggable="true" data-match="clock">clock speed</span>
+                <span class="word-chip" draggable="true" data-match="webpages">web pages</span>
+                <span class="word-chip" draggable="true" data-match="hex">hexadecimal</span>
+            </div>
+        </div>
+
+        <div class="paragraph-task">
+            <p>
+                A star topology connects devices to a central switch or hub. It is easy to add devices, but if the central device fails, 
+                the network may stop working. A <span class="blank" data-target="mesh"></span> topology connects devices using many routes. 
+                This can improve reliability, but it usually needs more cabling or connections, making it more 
+                <span class="blank" data-target="expensive"></span>.
+            </p>
+            <div class="word-bank">
+                <span class="word-chip" draggable="true" data-match="expensive">expensive</span>
+                <span class="word-chip" draggable="true" data-match="mesh">mesh</span>
+                <span class="word-chip" draggable="true" data-match="volatile">volatile</span>
+                <span class="word-chip" draggable="true" data-match="sample">sample rate</span>
+            </div>
+        </div>
+
+        <div class="paragraph-task">
+            <p>
+                Wired connections often use <span class="blank" data-target="ethernet"></span> and are usually faster, more stable and more secure. 
+                Wireless connections can use Wi-Fi or Bluetooth and are more flexible, but may suffer from interference or lower security. 
+                <span class="blank" data-target="encryption"></span> helps protect data by making it unreadable without the correct key.
+            </p>
+            <div class="word-bank">
+                <span class="word-chip" draggable="true" data-match="wifi">Wi-Fi</span>
+                <span class="word-chip" draggable="true" data-match="encryption">Encryption</span>
+                <span class="word-chip" draggable="true" data-match="ethernet">Ethernet</span>
+                <span class="word-chip" draggable="true" data-match="resolution">resolution</span>
+            </div>
+        </div>
+
+        <div class="paragraph-task">
+            <p>
+                An <span class="blank" data-target="ip"></span> address identifies a device on a network. 
+                A <span class="blank" data-target="mac"></span> address is assigned to a network device and is usually written in hexadecimal. 
+                Standards provide shared rules so hardware and software from different manufacturers can 
+                <span class="blank" data-target="interact"></span> correctly.
+            </p>
+            <div class="word-bank">
+                <span class="word-chip" draggable="true" data-match="interact">interact</span>
+                <span class="word-chip" draggable="true" data-match="mac">MAC</span>
+                <span class="word-chip" draggable="true" data-match="ip">IP</span>
+                <span class="word-chip" draggable="true" data-match="accumulator">Accumulator</span>
+            </div>
+        </div>
+
+        <div class="paragraph-task">
+            <p>
+                A protocol is a set of rules for transferring data. 
+                <span class="blank" data-target="tcpip"></span> is used for communication across networks. 
+                HTTP is used for normal web pages, while <span class="blank" data-target="https"></span> is the secure version. 
+                FTP transfers files. POP, IMAP and SMTP are used for 
+                <span class="blank" data-target="email"></span>. Layers split network communication into smaller parts, making systems easier to develop and troubleshoot.
+            </p>
+            <div class="word-bank">
+                <span class="word-chip" draggable="true" data-match="email">email</span>
+                <span class="word-chip" draggable="true" data-match="https">HTTPS</span>
+                <span class="word-chip" draggable="true" data-match="bitdepth">bit depth</span>
+                <span class="word-chip" draggable="true" data-match="tcpip">TCP/IP</span>
+                <span class="word-chip" draggable="true" data-match="ram">RAM</span>
+            </div>
+        </div>
+
+        <div class="button-row">
+            <button class="action-btn primary check-missing">Check 1.3 paragraphs</button>
+            <button class="action-btn reset-missing">Reset 1.3 paragraphs</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Drag and drop: match the protocol or term</h3>
+        <div class="drag-area">
+            <div>
+                <div class="bank-title">Drag these:</div>
+                <div class="draggables">
+                    <div class="drag-item" draggable="true" data-match="http">HTTP</div>
+                    <div class="drag-item" draggable="true" data-match="https">HTTPS</div>
+                    <div class="drag-item" draggable="true" data-match="ftp">FTP</div>
+                    <div class="drag-item" draggable="true" data-match="imap">IMAP</div>
+                    <div class="drag-item" draggable="true" data-match="dns">DNS</div>
+                    <div class="drag-item" draggable="true" data-match="ip">IP address</div>
+                </div>
+            </div>
+            <div>
+                <div class="bank-title">Drop onto the correct description:</div>
+                <div class="dropzones">
+                    <div class="dropzone" data-target="dns"><strong>Translates domain names to IP addresses</strong></div>
+                    <div class="dropzone" data-target="https"><strong>Secure webpage communication</strong></div>
+                    <div class="dropzone" data-target="ftp"><strong>Transfers files between computers</strong></div>
+                    <div class="dropzone" data-target="imap"><strong>Retrieves emails from a mail server</strong></div>
+                    <div class="dropzone" data-target="http"><strong>Loads normal webpages</strong></div>
+                    <div class="dropzone" data-target="ip"><strong>Unique address for a device on a network</strong></div>
+                </div>
+            </div>
+        </div>
+        <div class="button-row">
+            <button class="action-btn primary check-drag">Check drag answers</button>
+            <button class="action-btn reset-drag">Reset drag task</button>
+        </div>
+    </div>
+</section>
+
+<div class="score-panel" id="scorePanel">
+    Score: 0 correct MCQs answered.
+</div>
+
+<div class="card">
+    <h3>Student Controls</h3>
+    <div class="button-row">
+        <button class="action-btn primary" onclick="resetAll()">Reset all answers</button>
+        <button class="action-btn" onclick="window.print()">Print page</button>
+    </div>
+    <p class="small-note">Tip: Students can complete one labelled page at a time, then use the drag tasks to check key vocabulary and definitions.</p>
+</div>
+
+</main>
+
+<script>
+let mcqScore = 0;
+let answered = new WeakSet();
+let dragged = null;
+
+document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.page).classList.add('active');
+        window.scrollTo({top:0, behavior:'smooth'});
+    });
+});
+
+document.querySelectorAll('.mcq').forEach(mcq => {
+    mcq.querySelectorAll('.option').forEach(option => {
+        option.addEventListener('click', () => {
+            if(answered.has(mcq)) return;
+
+            const answer = mcq.dataset.answer;
+            const choice = option.dataset.choice;
+            const feedback = mcq.querySelector('.feedback');
+
+            // Clear previous wrong attempts, but do not reveal the correct answer.
+            mcq.querySelectorAll('.option').forEach(o => o.classList.remove('wrong'));
+
+            if(choice === answer){
+                option.classList.add('correct');
+                feedback.textContent = 'Correct. This question is now locked.';
+                feedback.className = 'feedback ok';
+                mcqScore++;
+                answered.add(mcq);
+                updateScore();
+            } else {
+                option.classList.add('wrong');
+                feedback.textContent = 'Not quite. Try again.';
+                feedback.className = 'feedback no';
+            }
+        });
+    });
+});
+
+function updateScore(){
+    document.getElementById('scorePanel').textContent = `Overall MCQ score: ${mcqScore} correct MCQs answered.`;
+    updatePageScores();
+}
+
+function getPageScore(page){
+    const total =
+        page.querySelectorAll('.mcq').length +
+        page.querySelectorAll('.blank').length +
+        page.querySelectorAll('.dropzone').length +
+        page.querySelectorAll('.typed-question').length;
+
+    let correct = 0;
+
+    page.querySelectorAll('.mcq').forEach(mcq => {
+        if(mcq.querySelector('.option.correct')) correct++;
+    });
+
+    correct += page.querySelectorAll('.blank.correct').length;
+    correct += page.querySelectorAll('.dropzone.correct').length;
+    correct += page.querySelectorAll('.typed-question.correct').length;
+
+    return {correct, total};
+}
+
+function updateOverallPaperScore(){
+    let paperCorrect = 0;
+    let paperTotal = 0;
+
+    document.querySelectorAll('.page').forEach(page => {
+        const score = getPageScore(page);
+        paperCorrect += score.correct;
+        paperTotal += score.total;
+    });
+
+    const percent = paperTotal === 0 ? 0 : Math.round((paperCorrect / paperTotal) * 100);
+    const panel = document.getElementById('overallPaperScore');
+    if(panel){
+        panel.querySelector('.percent').textContent = `${percent}%`;
+        panel.querySelector('.detail').textContent = `${paperCorrect} / ${paperTotal}`;
+    }
+}
+
+function updatePageScores(){
+    document.querySelectorAll('.page').forEach(page => {
+        const score = getPageScore(page);
+        const percent = score.total === 0 ? 0 : Math.round((score.correct / score.total) * 100);
+        const panel = document.querySelector(`.page-score[data-score-for="${page.id}"]`);
+        if(panel){
+            panel.innerHTML = `Page score: ${score.correct} / ${score.total} = ${percent}%<small>Complete MCQs and press check on drag tasks to update this.</small>`;
+        }
+    });
+    updateOverallPaperScore();
+}
+
+function addDragListeners(){
+    document.querySelectorAll('.drag-item, .word-chip').forEach(item => {
+        item.addEventListener('dragstart', () => {
+            dragged = item;
+            setTimeout(() => item.style.opacity = '0.4', 0);
+        });
+        item.addEventListener('dragend', () => {
+            item.style.opacity = '1';
+            dragged = null;
+        });
+    });
+
+    document.querySelectorAll('.dropzone, .blank').forEach(zone => {
+        zone.addEventListener('dragover', e => {
+            e.preventDefault();
+            zone.classList.add('over');
+        });
+        zone.addEventListener('dragleave', () => zone.classList.remove('over'));
+        zone.addEventListener('drop', e => {
+            e.preventDefault();
+            zone.classList.remove('over');
+            if(dragged){
+                if(zone.classList.contains('blank')){
+                    const old = zone.querySelector('.word-chip');
+                    if(old){
+                        const task = zone.closest('.missing-task, .paragraph-task');
+                        task.querySelector('.word-bank').appendChild(old);
+                    }
+                    zone.appendChild(dragged);
+                } else {
+                    zone.appendChild(dragged);
+                }
+            }
+        });
+    });
+}
+addDragListeners();
+
+document.querySelectorAll('.check-drag').forEach(button => {
+    button.addEventListener('click', () => {
+        const card = button.closest('.card');
+        card.querySelectorAll('.dropzone').forEach(zone => {
+            zone.classList.remove('correct','wrong');
+            let items = Array.from(zone.querySelectorAll('.drag-item'));
+            if(items.length === 0){
+                zone.classList.add('wrong');
+                return;
+            }
+            let allCorrect = items.every(item => item.dataset.match === zone.dataset.target);
+            zone.classList.add(allCorrect ? 'correct' : 'wrong');
+        });
+        updatePageScores();
+    });
+});
+
+document.querySelectorAll('.reset-drag').forEach(button => {
+    button.addEventListener('click', () => {
+        const card = button.closest('.card');
+        const bank = card.querySelector('.draggables');
+        card.querySelectorAll('.dropzone').forEach(zone => {
+            zone.classList.remove('correct','wrong','over');
+            zone.querySelectorAll('.drag-item').forEach(item => bank.appendChild(item));
+        });
+        updatePageScores();
+    });
+});
+
+document.querySelectorAll('.check-missing').forEach(button => {
+    button.addEventListener('click', () => {
+        const card = button.closest('.card');
+        card.querySelectorAll('.blank').forEach(blank => {
+            blank.classList.remove('correct','wrong','over');
+            const item = blank.querySelector('.word-chip');
+            if(item && item.dataset.match === blank.dataset.target){
+                blank.classList.add('correct');
+            } else {
+                blank.classList.add('wrong');
+            }
+        });
+        updatePageScores();
+    });
+});
+
+document.querySelectorAll('.reset-missing').forEach(button => {
+    button.addEventListener('click', () => {
+        const card = button.closest('.card');
+        card.querySelectorAll('.missing-task, .paragraph-task').forEach(task => {
+            const bank = task.querySelector('.word-bank');
+            task.querySelectorAll('.blank').forEach(blank => {
+                blank.classList.remove('correct','wrong','over');
+                blank.querySelectorAll('.word-chip').forEach(item => bank.appendChild(item));
+            });
+        });
+        updatePageScores();
+    });
+});
+
+function normaliseTyped(value){
+    return value.trim().toUpperCase().replace(/\s+/g,'').replace(/,/g,'').replace(/BYTES?/g,'').replace(/BITS?/g,'');
+}
+
+document.querySelectorAll('.check-typed').forEach(button => {
+    button.addEventListener('click', () => {
+        const card = button.closest('.card');
+        card.querySelectorAll('.typed-question').forEach(q => {
+            const input = q.querySelector('input');
+            const feedback = q.querySelector('.typed-feedback');
+            const expected = normaliseTyped(q.dataset.answer);
+            const actual = normaliseTyped(input.value);
+            q.classList.remove('correct','wrong');
+            if(actual === expected){
+                q.classList.add('correct');
+                feedback.textContent = 'Correct.';
+                feedback.style.color = '#1b6e32';
+            } else {
+                q.classList.add('wrong');
+                feedback.textContent = `Not quite. Correct answer: ${q.dataset.answer}`;
+                feedback.style.color = '#a11d1d';
+            }
+        });
+        updatePageScores();
+    });
+});
+
+document.querySelectorAll('.reset-typed').forEach(button => {
+    button.addEventListener('click', () => {
+        const card = button.closest('.card');
+        card.querySelectorAll('.typed-question').forEach(q => {
+            q.classList.remove('correct','wrong');
+            q.querySelector('input').value = '';
+            q.querySelector('.typed-feedback').textContent = '';
+        });
+        updatePageScores();
+    });
+});
+
+function toggleCalc(id){
+    document.getElementById(id).classList.toggle('hidden');
+}
+
+function resetAll(){
+    mcqScore = 0;
+    answered = new WeakSet();
+    document.querySelectorAll('.option').forEach(o => o.classList.remove('correct','wrong'));
+    document.querySelectorAll('.feedback').forEach(f => {
+        f.textContent = '';
+        f.className = 'feedback';
+    });
+    document.querySelectorAll('.reset-drag').forEach(btn => btn.click());
+    document.querySelectorAll('.reset-missing').forEach(btn => btn.click());
+    document.querySelectorAll('.reset-typed').forEach(btn => btn.click());
+    updateScore();
+}
+
+updatePageScores();
+</script>
+
+</body>
+</html>
